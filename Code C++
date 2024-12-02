@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <iomanip> // for setting precision
+using namespace std;
+
+// Define a structure to store a person's data
+struct Person {
+    string name;
+    int age;
+    string gender;
+    double income;
+    int dependentVariable; // y
+    double independentVariable1; // x1
+    double independentVariable2; // x2
+};
+
+// Function to calculate the average income
+double calculateAverageIncome(const vector<Person>& data) {
+    double totalIncome = 0;
+    for (const auto& person : data) {
+        totalIncome += person.income;
+    }
+    return totalIncome / data.size();
+}
+
+// Main function
+int main() {
+    // Initialize the dataset
+    vector<Person> data = {
+        {"Natasha", 37, "female", 73621, 4, 2, 3},
+        {"Aiza", 41, "female", 72595, 3, 5, 5},
+        {"Obaid", 34, "male", 29003, 1, 5, 4},
+        {"Arman", 47, "male", 46909, 4, 2, 4}
+    };
+
+    // Calculate and display the average income
+    double averageIncome = calculateAverageIncome(data);
+    cout << fixed << setprecision(2); // Format output to 2 decimal places
+    cout << "Average Income: " << averageIncome << endl;
+
+    // Example: Display data
+    cout << "\nDataset:\n";
+    for (const auto& person : data) {
+        cout << "Name: " << person.name
+             << ", Age: " << person.age
+             << ", Gender: " << person.gender
+             << ", Income: " << person.income
+             << ", Dependent Variable (y): " << person.dependentVariable
+             << ", Independent Variables (x1, x2): (" << person.independentVariable1 << ", " << person.independentVariable2 << ")\n";
+    }
+
+    // Example: Additional operations (e.g., regression analysis) can be added here
+
+    return 0;
+}
